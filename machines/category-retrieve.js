@@ -82,19 +82,19 @@ module.exports = {
                   "collections": true
                 },
                 "paymentPlans": {
-                  "due1": {
-                    "description": "Full payment",
-                    "visible": true,
-                    "dues": [
-                      {
-                        "description": "some description",
-                        "dateCharge": "2016-02-26 10:30",
-                        "amount": 100,
-                        "discount": 50,
-                        "applyDiscount": false
-                      }
-                    ]
-                  }
+                  //"due1": {
+                  //  "description": "Full payment",
+                  //  "visible": true,
+                  //  "dues": [
+                  //    {
+                  //      "description": "some description",
+                  //      "dateCharge": "2016-02-26 10:30",
+                  //      "amount": 100,
+                  //      "discount": 50,
+                  //      "applyDiscount": false
+                  //    }
+                  //  ]
+                  //}
                 }
               }
             ]
@@ -144,18 +144,11 @@ module.exports = {
             isActive: cat.status == "1",
             products: []
           }
-
           cat.simpleProducts.map(function(prod){
-            var mainImage = prod.mediaGallery.images[0].fullUrl;
-            console.log('mainImage ', mainImage)
-
             if(prod.feeManagement){
-              var prodJson = JSON.parse(prod.feeManagement)
-              prodJson.details.images.main =  mainImage
-
-
-
-              category.products.push(prodJson)
+              var prodJson = JSON.parse(prod.feeManagement);
+              prodJson.details.images.main =  prod.mediaGallery.images[0].fullUrl;
+              category.products.push(prodJson);
             }
           });
           result.push(category);

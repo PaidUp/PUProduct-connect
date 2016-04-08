@@ -23,7 +23,8 @@
     "friendlyName": "Pu Product Connect",
     "machineDir": "machines/",
     "machines": [
-      "category-retrieve"
+      "category-retrieve",
+      "product-retrieve"
     ]
   }
 }

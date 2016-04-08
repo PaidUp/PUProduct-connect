@@ -47,9 +47,9 @@ function request(config, params, body,  cb) {
       },
 // 5xx status code returned from server (this usually means something went wrong on the other end)
       serverError: function (result) {
-        return {status : 500,
+        return cb({status : 500,
           message : result.body
-        }
+        })
       },
 // Unexpected connection error: could not send or receive HTTP request.
       requestFailed: function () {
