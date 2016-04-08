@@ -22,7 +22,7 @@
     "test-machinepack-mocha": "^2.0.0"
   },
   "machinepack": {
-    "friendlyName": "PaidUp Product Connect",
+    "friendlyName": "@PaidUp Product Connect",
     "machineDir": "machines/",
     "machines": [
       "category-retrieve",
