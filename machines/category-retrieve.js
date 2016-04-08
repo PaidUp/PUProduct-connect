@@ -58,7 +58,7 @@ module.exports = {
                   "geojson": {},
                   "visitbility": true,
                   "status": true,
-                  "images": {},
+                  "images": {main:'someUrl'},
                   "categories": [],
                   "relatedProducts": []
                 },
@@ -146,12 +146,19 @@ module.exports = {
           }
 
           cat.simpleProducts.map(function(prod){
-            if(prod.feeManagement)
-            category.products.push(JSON.parse(prod.feeManagement))
+            var mainImage = prod.mediaGallery.images[0].fullUrl;
+            console.log('mainImage ', mainImage)
+
+            if(prod.feeManagement){
+              var prodJson = JSON.parse(prod.feeManagement)
+              prodJson.details.images.main =  mainImage
+
+
+
+              category.products.push(prodJson)
+            }
           });
           result.push(category);
-
-
         });
 
         return exits.success({
