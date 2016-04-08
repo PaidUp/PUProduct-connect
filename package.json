@@ -10,7 +10,7 @@
     "machines",
     "machinepack"
   ],
-  "author": "",
+  "author": "PaidUp",
   "license": "MIT",
   "dependencies": {
     "machine": "^10.0.0",
