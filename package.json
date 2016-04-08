@@ -6,7 +6,9 @@
     "test": "node ./node_modules/test-machinepack-mocha/bin/testmachinepack-mocha.js"
   },
   "keywords": [
-    "Pu Product Connect",
+    "PaidUp",
+    "product",
+    "connect",
     "machines",
     "machinepack"
   ],
@@ -20,7 +22,7 @@
     "test-machinepack-mocha": "^2.0.0"
   },
   "machinepack": {
-    "friendlyName": "Pu Product Connect",
+    "friendlyName": "PaidUp Product Connect",
     "machineDir": "machines/",
     "machines": [
       "category-retrieve",
