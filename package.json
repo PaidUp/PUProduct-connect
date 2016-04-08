@@ -1,6 +1,6 @@
 {
   "name": "paidup-product-connect",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Connector for payment microservice",
   "scripts": {
     "test": "node ./node_modules/test-machinepack-mocha/bin/testmachinepack-mocha.js"
