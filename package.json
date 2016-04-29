@@ -1,6 +1,6 @@
 {
   "name": "paidup-product-connect",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "Connector for PaidUp Microservice Product",
   "scripts": {
     "test": "node ./node_modules/test-machinepack-mocha/bin/testmachinepack-mocha.js"
@@ -30,6 +30,6 @@
       "organization-request",
       "organization-response"
     ],
-    "iconSrc": "https://getpaidup.com/favicon.ico"
+    "iconSrc": "https://app.getpaidup.com/favicon.ico"
   }
 }
