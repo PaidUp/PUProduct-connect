@@ -16,8 +16,6 @@ module.exports = {
     },
     organizationInfo: {
       example: {
-        teamName: 'Austin Boom',
-        teamSport: 'soccer',
         ownerFirstName: 'John',
         ownerLastName: 'Due',
         ownerDOB: '12/12/1990',
@@ -32,7 +30,6 @@ module.exports = {
         Address: 'calle fake',
         AddressLineTwo: '123',
         businessName: 'bname',
-        phoneNumber: 'bnumber',
         businessType: 'Corporation',
         aba: '110000',
         dda: '000123456789'
