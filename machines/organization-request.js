@@ -32,7 +32,8 @@ module.exports = {
         businessName: 'bname',
         businessType: 'Corporation',
         aba: '110000',
-        dda: '000123456789'
+        dda: '000123456789',
+        referralCode: 'promoCode'
       },
       description: 'product info.',
       required: true
