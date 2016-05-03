@@ -28,7 +28,8 @@
       "category-retrieve",
       "product-retrieve",
       "organization-request",
-      "organization-response"
+      "organization-response",
+      "organization-response-update"
     ],
     "iconSrc": "https://app.getpaidup.com/favicon.ico"
   }
