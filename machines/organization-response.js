@@ -23,11 +23,30 @@ module.exports = {
   exits: {
     success: {
       variableName: 'response',
-      description: 'boolean. if the process is true, then all is ok.',
+      description: 'boolean. if the process is true, then all is ok. otherwise false',
       example: {
         status: 200,
         body: {
-          'response': true
+          _id: 'John',
+          ownerFirstName: 'John',
+          ownerLastName: 'Due',
+          ownerDOB: '12/12/1990',
+          ownerSSN: '123456789',
+          ownerEmail: 'austin@boom.com',
+          ownerPhone: '1234567890',
+          country: 'US',
+          state: 'TX',
+          city: 'Austin',
+          zipCode: '12345',
+          EIN: '123123123',
+          Address: 'calle fake',
+          AddressLineTwo: '123',
+          businessName: 'bname',
+          businessType: 'Corporation',
+          aba: '110000',
+          dda: '000123456789',
+          ownerId: 'userId',
+          verify: 'pending'
         }
       }
     },
@@ -42,7 +61,7 @@ module.exports = {
   },
   fn: function (inputs, exits) {
     var Connector = require('../core/common/connector')
-    var url = '/api/v1/organization/response/' + inputs.productId
+    var url = '/api/v1/organization/response/' + inputs.organizationId
     var config = {
       url: url,
       baseUrl: inputs.baseUrl,
@@ -50,17 +69,15 @@ module.exports = {
       token: inputs.token
     }
     Connector.request(config, {}, {}, function (err, resp) {
-      console.log('err', err)
-      console.log('resp', resp)
       if (err) {
         return exits.error({
           status: err.status,
-          message: err.message
+          message: err.message.message || err.message
         })
       } else {
         return exits.success({
           status: 200,
-          body: resp
+          body: resp.body
         })
       }
     })
