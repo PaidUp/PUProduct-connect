@@ -43,6 +43,7 @@ module.exports = {
             "company": "105",
             "image": "http://localhost:8888/media//catalog/product/n/t/xxxxx.png",
             "isActive": true,
+            "location": "Austin, TX",
             "products": [
               {
                 "details": {
@@ -142,6 +143,7 @@ module.exports = {
               company : cat.entityId,
               image: cat.mediaGallery.images[0].fullUrl,
               isActive: cat.status == "1",
+              location: cat.location,
               products: []
             }
             cat.simpleProducts.map(function(prod){
