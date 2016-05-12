@@ -43,6 +43,7 @@ module.exports = {
             "company": "105",
             "image": "http://localhost:8888/media//catalog/product/n/t/xxxxx.png",
             "isActive": true,
+            "location": "Austin, TX",
             "products": [
               {
                 "details": {
@@ -134,26 +135,29 @@ module.exports = {
         var result = [];
         var categories = resp.body;
         categories.map(function(cat){
-
-          var category = {
-            _id : cat.entityId,
-            name: cat.name,
-            description: cat.description,
-            company : cat.entityId,
-            image: cat.mediaGallery.images[0].fullUrl,
-            isActive: cat.status == "1",
-            products: []
-          }
-          cat.simpleProducts.map(function(prod){
-            if(prod.feeManagement){
-              var prodJson = JSON.parse(prod.feeManagement);
-              prodJson.details.images.main =  prod.mediaGallery.images[0].fullUrl;
-              category.products.push(prodJson);
+          try{
+            var category = {
+              _id : cat.entityId,
+              name: cat.name,
+              description: cat.description,
+              company : cat.entityId,
+              image: cat.mediaGallery.images[0].fullUrl,
+              isActive: cat.status == "1",
+              location: cat.location,
+              products: []
             }
-          });
-          result.push(category);
+            cat.simpleProducts.map(function(prod){
+              if(prod.feeManagement){
+                var prodJson = JSON.parse(prod.feeManagement);
+                prodJson.details.images.main =  prod.mediaGallery.images[0].fullUrl;
+                category.products.push(prodJson);
+              }
+            });
+            result.push(category);
+          }catch (err){
+            console.log(err)
+          }
         });
-
         return exits.success({
           status: resp.status,
           body: result
