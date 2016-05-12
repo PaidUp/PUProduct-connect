@@ -18,6 +18,11 @@ module.exports = {
       example: 'xxxyyyxxxx',
       description: 'id organization.',
       required: true
+    },
+    paymentId: {
+      example: 'xxxyyyxxxx',
+      description: 'id payment service (stripe, paypal).',
+      required: true
     }
   },
   exits: {
@@ -44,7 +49,7 @@ module.exports = {
   },
   fn: function (inputs, exits) {
     var Connector = require('../core/common/connector')
-    var url = '/api/v1/organization/response/' + inputs.organizationId
+    var url = '/api/v1/organization/response/' + inputs.organizationId + '/' + inputs.paymentId
     var config = {
       url: url,
       baseUrl: inputs.baseUrl,
