@@ -65,13 +65,13 @@ module.exports = {
                 },
                 "meta": {},
                 "processingFees": {
-                  "cardFee": 2.9,
+                  "cardFeeDisplay": 2.9,
                   "cardFeeActual": 2.9,
-                  "cardFeeFlat": 0.3,
+                  "cardFeeFlatDisplay": 0.3,
                   "cardFeeFlatActual": 0.3,
-                  "achFee": 0,
+                  "achFeeDisplay": 0,
                   "achFeeActual": 0,
-                  "achFeeFlat": 0,
+                  "achFeeFlatDisplay": 0,
                   "achFeeFlatActual": 0
                 },
                 "collectionsFee": {
