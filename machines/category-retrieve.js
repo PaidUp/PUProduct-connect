@@ -46,6 +46,7 @@ module.exports = {
             "location": "Austin, TX",
             "products": [
               {
+                "_id":"ID",
                 "details": {
                   "organizationId": "105",
                   "organizationName": "Team name",
@@ -150,6 +151,7 @@ module.exports = {
               if(prod.feeManagement){
                 var prodJson = JSON.parse(prod.feeManagement);
                 prodJson.details.images.main =  prod.mediaGallery.images[0].fullUrl;
+                prodJson._id = prod.entityId;
                 category.products.push(prodJson);
               }
             });
