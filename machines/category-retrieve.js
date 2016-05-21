@@ -135,6 +135,7 @@ module.exports = {
 
         var result = [];
         var categories = resp.body;
+        var today = new Date();
         categories.map(function(cat){
           try{
             var category = {
@@ -152,6 +153,19 @@ module.exports = {
                 var prodJson = JSON.parse(prod.feeManagement);
                 prodJson.details.images.main =  prod.mediaGallery.images[0].fullUrl;
                 prodJson._id = prod.entityId;
+
+
+                for (var key in prodJson.paymentPlans) {
+                  prodJson.paymentPlans[key].dues.forEach(function(ele, idx, arr){
+                    var dc = new Date(ele.dateCharge)
+                    if(dc < today ){
+                      ele.dateCharge = today;
+                    } else {
+                      ele.dateCharge = dc;
+                    }
+                  });
+                }
+
                 category.products.push(prodJson);
               }
             });
