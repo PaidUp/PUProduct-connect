@@ -164,14 +164,15 @@ module.exports = {
                   });
                 }
                 category.products.push(prodJson);
-                result.push(category);
               }
+              result.push(category);
             });
 
           }catch (err){
             console.log(err)
           }
         });
+        console.log(result)
         return exits.success(JSON.stringify({
           status: resp.status,
           body: result
