@@ -58,8 +58,8 @@ module.exports = {
                   "endAt": "2016-12-31",
                   "location": "Austin, TX",
                   "geojson": {},
-                  "visitbility": false,
-                  "status": false,
+                  "visitbility": true,
+                  "status": true,
                   "images": {main:'someUrl'},
                   "categories": [],
                   "relatedProducts": []
@@ -102,7 +102,8 @@ module.exports = {
             ]
           }
         ]
-      }`},
+      }`
+    },
     error: {
       description: 'error unexpected',
       example: {
@@ -152,31 +153,31 @@ module.exports = {
                 var prodJson = JSON.parse(prod.feeManagement);
                 prodJson.details.images.main =  prod.mediaGallery.images[0].fullUrl;
                 prodJson._id = prod.entityId;
+
+
                 for (var key in prodJson.paymentPlans) {
-                  prodJson.paymentPlans[key].dues = prodJson.paymentPlans[key].dues.map(function(ele){
+                  prodJson.paymentPlans[key].dues.forEach(function(ele, idx, arr){
                     var dc = new Date(ele.dateCharge)
                     if(dc < today ){
                       ele.dateCharge = today;
                     } else {
                       ele.dateCharge = dc;
                     }
-                    return ele;
                   });
                 }
+
                 category.products.push(prodJson);
               }
-              result.push(category);
             });
-
+            result.push(category);
           }catch (err){
             console.log(err)
           }
         });
-        console.log(result)
         return exits.success(JSON.stringify({
           status: resp.status,
           body: result
-        })  )
+        }))
       }
     })
   },
