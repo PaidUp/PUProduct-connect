@@ -33,7 +33,7 @@ module.exports = {
     success: {
       variableName: 'categories',
       description: 'List of categories.',
-      example: {
+      example: `{
         status: 200,
         body: [
           {
@@ -58,8 +58,8 @@ module.exports = {
                   "endAt": "2016-12-31",
                   "location": "Austin, TX",
                   "geojson": {},
-                  "visitbility": true,
-                  "status": true,
+                  "visitbility": false,
+                  "status": false,
                   "images": {main:'someUrl'},
                   "categories": [],
                   "relatedProducts": []
@@ -84,26 +84,25 @@ module.exports = {
                   "collections": true
                 },
                 "paymentPlans": {
-                  //"due1": {
-                  //  "description": "Full payment",
-                  //  "visible": true,
-                  //  "dues": [
-                  //    {
-                  //      "description": "some description",
-                  //      "dateCharge": "2016-02-26 10:30",
-                  //      "amount": 100,
-                  //      "discount": 50,
-                  //      "applyDiscount": false
-                  //    }
-                  //  ]
-                  //}
+                  "due1": {
+                    "description": "Full payment",
+                    "visible": true,
+                    "dues": [
+                      {
+                        "description": "some description",
+                        "dateCharge": "2016-02-26 10:30",
+                        "amount": 100,
+                        "discount": 50,
+                        "applyDiscount": false
+                      }
+                    ]
+                  }
                 }
               }
             ]
           }
         ]
-      }
-    },
+      }`},
     error: {
       description: 'error unexpected',
       example: {
@@ -153,31 +152,30 @@ module.exports = {
                 var prodJson = JSON.parse(prod.feeManagement);
                 prodJson.details.images.main =  prod.mediaGallery.images[0].fullUrl;
                 prodJson._id = prod.entityId;
-
-
                 for (var key in prodJson.paymentPlans) {
-                  prodJson.paymentPlans[key].dues.forEach(function(ele, idx, arr){
+                  prodJson.paymentPlans[key].dues = prodJson.paymentPlans[key].dues.map(function(ele){
                     var dc = new Date(ele.dateCharge)
                     if(dc < today ){
                       ele.dateCharge = today;
                     } else {
                       ele.dateCharge = dc;
                     }
+                    return ele;
                   });
                 }
-
                 category.products.push(prodJson);
+                result.push(category);
               }
             });
-            result.push(category);
+
           }catch (err){
             console.log(err)
           }
         });
-        return exits.success({
+        return exits.success(JSON.stringify({
           status: resp.status,
           body: result
-        })
+        })  )
       }
     })
   },
