@@ -38,9 +38,10 @@ module.exports = {
     success: {
       variableName: 'categories',
       description: 'List of categories.',
-      example: {
+      example: `{
         status: 200,
         body: {
+          "_id" : "someId",
           "details": {
             "organizationId": "105",
             "organizationName": "Team name",
@@ -78,22 +79,22 @@ module.exports = {
             "collections": true
           },
           "paymentPlans": {
-            //"due1": {
-            //  "description": "Full payment",
-            //  "visible": true,
-            //  "dues": [
-            //    {
-            //      "description": "some description",
-            //      "dateCharge": "2016-02-26 10:30",
-            //      "amount": 100,
-            //      "discount": 50,
-            //      "applyDiscount": false
-            //    }
-            //  ]
-            //}
+            "due1": {
+              "description": "Full payment",
+              "visible": true,
+              "dues": [
+                {
+                  "description": "some description",
+                  "dateCharge": "2016-02-26 10:30",
+                  "amount": 100,
+                  "discount": 50,
+                  "applyDiscount": false
+                }
+              ]
+            }
           }
         }
-      }
+      }`
     },
     error: {
       description: 'error unexpected',
@@ -130,7 +131,7 @@ module.exports = {
       else {
         var today = new Date();
         var prodJson = JSON.parse(resp.body.feeManagement)
-
+        prodJson._id = resp.body.productId;
         prodJson.details.images.main = resp.body.images[0].url;
 
         for (var key in prodJson.paymentPlans) {
@@ -144,11 +145,10 @@ module.exports = {
           });
         }
 
-
-        return exits.success({
+        return exits.success(JSON.stringify({
           status: 200,
           body: prodJson
-        })
+        }))
       }
     })
   },
