@@ -145,7 +145,7 @@ module.exports = {
                   name: cat.name,
                   description: cat.description,
                   company: cat.entityId,
-                  image: cat.mediaGallery.images[0].file,
+                  image: '/api/v1/media/image/magento?file='+cat.mediaGallery.images[0].file,
                   isActive: cat.status == "1",
                   location: cat.location,
                   products: []
@@ -153,7 +153,7 @@ module.exports = {
                 cat.simpleProducts.map(function (prod) {
                   if (prod.feeManagement) {
                     var prodJson = JSON.parse(prod.feeManagement);
-                    prodJson.details.images.main = prod.mediaGallery.images[0].fullUrl;
+                    prodJson.details.images.main = '/api/v1/media/image/magento?file='+prod.mediaGallery.images[0].file;
                     prodJson._id = prod.entityId;
   
   
